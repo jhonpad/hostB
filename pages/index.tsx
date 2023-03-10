@@ -20,8 +20,10 @@ export const Home = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) =>  {
   console.log('env -> ', process.env.NEXTAUTH_CLIENT_ID)
   // const { data: session } = useSession()
+  const { status } = useSession()
 
-  console.log('hi ',session)
+  console.log('Session ',session)
+  console.log('Status -> ',status)
 
   if (session) {
     return (
