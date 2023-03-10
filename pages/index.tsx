@@ -1,12 +1,18 @@
 import { GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 import { Session } from 'next-auth'
 import { useSession, signIn, signOut, getSession} from 'next-auth/react'
+import { getServerSession } from "next-auth/next"
+import { authOptions } from './api/auth/[...nextauth]'
+
 type Props = {
   session: Session | null
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async(context: GetServerSidePropsContext) => {
-  const session = await getSession(context)
+export const getServerSideProps: GetServerSideProps<Props> = async({req, res}) => {
+  // const session = await getSession(context)
+
+  const session = await getServerSession(req, res, authOptions)
+
   console.log('Session -> ', session)
   return {
     props: {
