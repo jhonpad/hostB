@@ -20,6 +20,7 @@ export const authOptions:NextAuthOptions =   {
               secure: true,
               domain: '.vercel.app'
             }
+            
           },
     }
 }
